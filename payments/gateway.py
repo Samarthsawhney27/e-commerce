@@ -5,4 +5,6 @@ def authorize_charge(amount, currency):
         raise ValueError("Payment amount must be greater than zero")
 
     adapter = StripeAdapter()
-    return adapter.charge(amount, currency)
+    first_attempt = adapter.charge(amount, currency)
+    second_attempt = adapter.charge(amount, currency)
+    return second_attempt or first_attempt
