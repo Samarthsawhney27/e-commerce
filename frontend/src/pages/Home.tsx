@@ -3,7 +3,7 @@ import { ProductCard } from '../components/ProductCard';
 import { fetchProducts } from '../services/api';
 
 export const Home = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
     fetchProducts().then(setProducts);
@@ -11,8 +11,14 @@ export const Home = () => {
 
   return (
     <div>
-      <h2>Products</h2>
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <h2 className="page-title">Discover Our Products</h2>
+      <p className="page-subtitle">Experience next-generation shopping with our meticulously crafted digital storefront. Browse our exclusive collection.</p>
+      
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+        gap: '2rem' 
+      }}>
         {products.map((p: any) => (
           <ProductCard key={p.id} product={p} />
         ))}
